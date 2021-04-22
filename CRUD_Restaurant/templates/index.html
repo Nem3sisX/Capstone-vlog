@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant CRUD</title>
+</head>
+
+<body>
+    <h1>Restaurant Management</h1>
+    <h3>Menu CRUD</h3>
+    <form action='restdata'>
+        <label for="dish">
+            <h4>ID:</h4>
+        </label>
+        <input type="text" id="id" name="id"><br>
+        <label for="dish">
+            <h4>Dish Name:</h4>
+        </label>
+        <input type="text" id="dish" name="dish"><br>
+        <label for="Date">
+            <h4>Date</h4>
+        </label>
+        <input type="date" id="date_stamp" name="date_stamp"> <br>
+        <label>
+            <h4>Dish type:</h4>
+        </label>
+        <input type="radio" id="veg" name="food" value="veg">
+        <label for="veg">Vegetarian</label>
+        <input type="radio" id="nonveg" name="food" value="nonveg">
+        <label for="nonveg">Non-Vegetarian</label> <br>
+        <label>
+            <h4>Cuisine:</h4>
+        </label>
+        <select name="opt_val" id="opt_val">
+            <option value="Indian">Indian</option>
+            <option value="Continental">Continental</option>
+            <option value="Chinese">Chinese</option>
+        </select> <br>
+        <label>
+            <h4>Additonal Info:</h4>
+        </label>
+        <input type="checkbox" id="info1" name="info1" value="True">
+        <label for="info1"> The dish is seasonal.</label>
+        <input type="checkbox" id="info2" name="info2" value="True">
+        <label for="info2"> The dish can contains allergens. </label>
+        <input type="checkbox" id="info3" name="info3" value="True">
+        <label for="info3"> Order must be placed in advance for this dish</label><br>
+        <label>
+            <h4>Upload Image:</h4>
+        </label>
+        <input type="file" id="img" name="img"><br>
+        <label>
+            <h4>Comments:</h4>
+        </label>
+        <textarea rows="9" cols="88" name="comment">Enter data...</textarea><br>
+        <input type="submit" value="Insert" name="b1" />
+        <input type="submit" value="Select" name="b1" />
+        <input type="submit" value="Update" name="b1" />
+        <input type="submit" value="Delete" name="b1" />
+    </form>
+
+</body>
+
+</html>
