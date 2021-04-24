@@ -79,7 +79,7 @@ class restOP(View):
             obj.dish_name = dish
             obj.date = date_val
             obj.qty = qty
-            obj.price = qty
+            obj.price = price
             obj.dish_type = dish_type
             obj.cuisine = cuisine
             obj.seasonal = seasonal
