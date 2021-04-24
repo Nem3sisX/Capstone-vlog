@@ -1,18 +1,22 @@
 from django.shortcuts import render
 from CRUD.models import Restaurant
 from django.http import HttpResponse
+from django.views.generic.base import TemplateView
+from django.views import View
 
 
-def index(request):
-    return render(request, "index.html")
+class index(TemplateView):
+    template_name = "index.html"
 
 
-def restOP(request):
-    if request.method == "POST":
+class restOP(View):
+    def post(self, request):
         button = request.POST["b1"]
         if button == "Insert":
             dish = request.POST["dish"]
             date_val = request.POST["date_stamp"]
+            qty = request.POST["qty"]
+            price = request.POST["price"]
             dish_type = request.POST["food"]
             cuisine = request.POST["opt_val"]
             try:
@@ -32,6 +36,8 @@ def restOP(request):
             e = Restaurant.objects.create(
                 dish_name=dish,
                 date=date_val,
+                qty=qty,
+                price=price,
                 dish_type=dish_type,
                 cuisine=cuisine,
                 seasonal=seasonal,
@@ -51,6 +57,8 @@ def restOP(request):
             id = request.POST["id"]
             dish = request.POST["dish"]
             date_val = request.POST["date_stamp"]
+            qty = request.POST["qty"]
+            price = request.POST["price"]
             dish_type = request.POST["food"]
             cuisine = request.POST["opt_val"]
             try:
@@ -70,6 +78,8 @@ def restOP(request):
             obj = Restaurant.objects.get(pk=id)
             obj.dish_name = dish
             obj.date = date_val
+            obj.qty = qty
+            obj.price = qty
             obj.dish_type = dish_type
             obj.cuisine = cuisine
             obj.seasonal = seasonal
