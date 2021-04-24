@@ -11,7 +11,8 @@
 <body>
     <h1>Restaurant Management</h1>
     <h3>Menu CRUD</h3>
-    <form action='restdata'>
+    <form method='POST' action='restdata' enctype="multipart/form-data">
+        {% csrf_token %}
         <label for="dish">
             <h4>ID:</h4>
         </label>
@@ -51,7 +52,7 @@
         <label>
             <h4>Upload Image:</h4>
         </label>
-        <input type="file" id="img" name="img"><br>
+        <input type="file" id="img" name="img" /><br>
         <label>
             <h4>Comments:</h4>
         </label>

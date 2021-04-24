@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Restaurant(models.Model):
     dish_name = models.CharField(max_length=100)
     date = models.DateField()
@@ -8,7 +9,7 @@ class Restaurant(models.Model):
     seasonal = models.BooleanField(default=False)
     allergens = models.BooleanField(default=False)
     advance = models.BooleanField(default=False)
-    img = models.ImageField(upload_to="pics")
+    img = models.ImageField(upload_to="pics/")
     comments = models.TextField()
 
     class Meta:

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from CRUD.models import Restaurant
+from django.http import HttpResponse
 
 
 def index(request):
@@ -7,27 +8,27 @@ def index(request):
 
 
 def restOP(request):
-    if request.method == "GET":
-        button = request.GET["b1"]
+    if request.method == "POST":
+        button = request.POST["b1"]
         if button == "Insert":
-            dish = request.GET["dish"]
-            date_val = request.GET["date_stamp"]
-            dish_type = request.GET["food"]
-            cuisine = request.GET["opt_val"]
+            dish = request.POST["dish"]
+            date_val = request.POST["date_stamp"]
+            dish_type = request.POST["food"]
+            cuisine = request.POST["opt_val"]
             try:
-                seasonal = request.GET["info1"]
+                seasonal = request.POST["info1"]
             except:
                 seasonal = 0
             try:
-                allergy = request.GET["info2"]
+                allergy = request.POST["info2"]
             except:
                 allergy = 0
             try:
-                advance = request.GET["info3"]
+                advance = request.POST["info3"]
             except:
                 advance = 0
-            img = request.GET["img"]
-            comm = request.GET["comment"]
+            img = request.FILES["img"]
+            comm = request.POST["comment"]
             e = Restaurant.objects.create(
                 dish_name=dish,
                 date=date_val,
@@ -39,25 +40,33 @@ def restOP(request):
                 img=img,
                 comments=comm,
             )
-            msg = "Record Saved"
-            return render(request, "result.html", {"msg": msg})
+            return HttpResponse("<h1> Record Saved</h1>")
 
         elif button == "Select":
-            id = request.GET["id"]
+            id = request.POST["id"]
             obj = Restaurant.objects.get(pk=id)
             return render(request, "result.html", {"obj": obj})
 
         elif button == "Update":
-            id = request.GET["id"]
-            dish = request.GET["dish"]
-            date_val = request.GET["date_stamp"]
-            dish_type = request.GET["food"]
-            cuisine = request.GET["opt_val"]
-            seasonal = request.GET["info1"]
-            allergy = request.GET["info2"]
-            advance = request.GET["info3"]
+            id = request.POST["id"]
+            dish = request.POST["dish"]
+            date_val = request.POST["date_stamp"]
+            dish_type = request.POST["food"]
+            cuisine = request.POST["opt_val"]
+            try:
+                seasonal = request.POST["info1"]
+            except:
+                seasonal = 0
+            try:
+                allergy = request.POST["info2"]
+            except:
+                allergy = 0
+            try:
+                advance = request.POST["info3"]
+            except:
+                advance = 0
             img = request.FILES["img"]
-            comm = request.GET["comment"]
+            comm = request.POST["comment"]
             obj = Restaurant.objects.get(pk=id)
             obj.dish_name = dish
             obj.date = date_val
@@ -70,11 +79,11 @@ def restOP(request):
             obj.comments = comm
             obj.save()
             msg = "Updated"
-            return render(request, "result.html", {"msg": msg})
+            return HttpResponse("<h1> Record Updated </h1>")
 
         elif button == "Delete":
-            id = request.GET["id"]
+            id = request.POST["id"]
             obj = Restaurant.objects.get(pk=id)
             obj.delete()
             msg = "Deleted"
-            return render(request, "result.html", {"msg": msg})
+            return HttpResponse("<h1> Record Deleted</h1>")
